@@ -33,8 +33,8 @@
     }
 }
 
-- (void) addPlot:(CPString) label data:(CPArray) data {
-    plots.push({ label: label, data: data });
+- (void) addPlot:(CPDictionary) options {
+    plots.push(options);
 }
 
 - (void) removePlotWithLabel:(CPString) label {

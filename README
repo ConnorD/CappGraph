@@ -26,12 +26,14 @@ Example of graphing basic data (once again, utilize the Flot documentation to se
 
 - (void) graphViewDidFinishLoading:(Graph) theGraph {
 	// add some data to our graph/plot
-	[theGraph addPlot:@"The Title" data:[[1, 2], [2, 4]]]; // just 2 points (makes a line) with a label
+	[theGraph addPlot:{ title: @"The Title" data: [[1, 2], [2, 4]] }]; // just 2 points (makes a line) with a label
 	[theGraph refreshGraph]; // actually load available data into the graph
 	
 	[theGraph removePlotWithLabel:@"The Title"]; // removes the graph with title @"The Title" from the stack
 	[theGraph refreshGraph]; // actually shows the changes (should now be an empty graph)
 }
+
+Note: the "addPlot:(CPDictionary) options" method takes in a dictionary of options for the graph, with full details about the possible options on the Flot homepage.
 
 That's all there is to know for now!
 
