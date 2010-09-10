@@ -1,0 +1,38 @@
+CappGraph library for Cappuccino (http://cappuccino.org)
+
+by Connor Denman
+http://connordenman.wordpress.com
+
+CappGraph is a very simple graphing library for Cappuccino. It utilizes the Flot graphing library for jQuery, found at http://code.google.com/p/flot/.
+The Cappuccino library is basically a wrapper for Flot, so for a complete documentation document, refer to the official Flot documentation.
+
+Basic Cappuccino/Objective-J usage:
+
+First of all, before the Flot graph is ready for methods to be called on it, you must wait for the jQuery/HTML document to finish loading.
+For your class to 'know' when jQuery and Flot are ready, you must delegate the functionality from CappGraph.
+
+Graph theGraph = [[Graph alloc] initWithFrame:CGRectMakeZero()];
+[theGraph setDelegate:self];
+
+To recieve the message that the graph has loaded, implement the following method:
+
+- (void) graphViewDidFinishLoading:(Graph) theGraph {
+	// do something once the graph is loaded
+}
+
+Once that delegate method has been recieved, you're ready to graph data!
+
+Example of graphing basic data (once again, utilize the Flot documentation to see what it can really do):
+
+- (void) graphViewDidFinishLoading:(Graph) theGraph {
+	// add some data to our graph/plot
+	[theGraph addPlot:@"The Title" data:[[1, 2], [2, 4]]]; // just 2 points (makes a line) with a label
+	[theGraph refreshGraph]; // actually load available data into the graph
+	
+	[theGraph removePlotWithLabel:@"The Title"]; // removes the graph with title @"The Title" from the stack
+	[theGraph refreshGraph]; // actually shows the changes (should now be an empty graph)
+}
+
+That's all there is to know for now!
+
+Thank you!
