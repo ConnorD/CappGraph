@@ -6,7 +6,7 @@
 {
     DOMWindow domWin;
     @outlet id delegate @accessors(property=delegate);
-    CPArray plots;
+    @accessors CPArray plots;
 }
 
 - (id)initWithFrame:(CGRect)aFrame
@@ -45,9 +45,16 @@
     }
 }
 
+- (void) removePlotWithIndex:(int)index {
+    plots.splice(index, 1);
+}
+
 // call this when you're ready to plot or re-plot everything
 - (void) refreshGraph {
-    domWin.jQuery.plot(domWin.jQuery('#graph'), plots);
+    //domWin.jQuery.plot(domWin.jQuery('#graph'), plots);
+    domWin.jQuery.plot.setData(plots);
+    domWin.jQuery.setupGrid();
+    domWin.jQuery.plot.draw();
 }
 
 @end
